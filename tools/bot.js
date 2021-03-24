@@ -21,13 +21,8 @@ const calculate = (response) => {
 
   var formatPercent = parseFloat(response.market_data.percent_change_usd_last_1_hour).toFixed(2)+"%"
 
-  var date = new Date();
-  var options = { hour: 'numeric', minute: '2-digit' };
-  var localHour = date.toLocaleString('pt-BR', options)
-
   let settings = {
     isHigher: false,
-    localHour: localHour,
     formatedPrice: formatedPrice,
     formatPercent: formatPercent
   }
@@ -46,11 +41,11 @@ const calculate = (response) => {
 const publish = (settings) => {
   let template = ''
   if (settings.isHigher) {
-    template = `💸 Dogecoin subiu - ${settings.formatedPrice} às ${settings.localHour} \n📈 Variação: ${settings.formatPercent}`
+    template = `💸 Dogecoin subiu - ${settings.formatedPrice} \n📈 Variação: ${settings.formatPercent}`
   } else if (!settings.isHigher) {
-    template = `💸 Dogecoin caiu - ${settings.formatedPrice} às ${settings.localHour} \n📈 Variação: ${settings.formatPercent}`
+    template = `💸 Dogecoin caiu - ${settings.formatedPrice} \n📈 Variação: ${settings.formatPercent}`
   } else {
-    template = `💸 Dogecoin se manteve - ${settings.formatedPrice} às ${settings.localHour} \n📈 Variação: ${settings.formatPercent}`
+    template = `💸 Dogecoin se manteve - ${settings.formatedPrice} \n📈 Variação: ${settings.formatPercent}`
   }
   Twitter.post(template)
 }
