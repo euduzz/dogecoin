@@ -10,19 +10,20 @@ var instance = new Twit({
   timeout_ms: 60*1000,
 })
 
-module.exports = class Twitter {
+const post = (message) => {
+  instance.post('statuses/update', { status: message }, status())
+}
 
-  post(message) {
-    instance.post('statuses/update', { status: message }, this.status())
+const status = (error, response) => {
+  if (error) {
+    console.log('Fala ao realizar o tweet', error);
   }
-
-  status(error, response) {
-    if (error) {
-      console.log('Fala ao realizar o tweet', error);
-    }
-    else {
-      console.log('Tweet realizado com sucesso', response);
-    }
+  else {
+    console.log('Tweet realizado com sucesso', response);
   }
+}
 
+module.exports = {
+  post,
+  status
 }

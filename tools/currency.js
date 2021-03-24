@@ -2,10 +2,10 @@
 require('dotenv').config()
 const axios = require('axios');
 
-module.exports = class Currency {
+const get = async() => {
+  return await axios.get(process.env.API_URL)
+}
 
-  async get() {
-    return await axios.get(process.env.API_URL)
-  }
-
+module.exports = {
+  get,
 }
