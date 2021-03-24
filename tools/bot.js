@@ -1,5 +1,5 @@
-import Twitter from './twitter';
-import Currency from './currency';
+const Twitter = require('./tools/twitter');
+const Currency = require('./tools/currency');
 
 class Bot {
 

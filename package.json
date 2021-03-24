@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "babel-node index.js node index.js",
+    "start": "node index.js",
     "serve": "babel-node index.js nodemon index.js"
   },
   "dependencies": {
