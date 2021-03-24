@@ -5,6 +5,10 @@ const app = express();
 import Bot from './tools/bot';
 const schedule = require('node-schedule');
 
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
 schedule.scheduleJob("*/30 7-19 * * *", (async function() {
   Bot.init()
 }))
