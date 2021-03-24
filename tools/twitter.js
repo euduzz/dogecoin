@@ -9,7 +9,7 @@ var instance = new Twit({
   timeout_ms: 60*1000,
 })
 
-class Twitter {
+module.exports = class Twitter {
 
   post(message) {
     instance.post('statuses/update', { status: message }, this.status())
@@ -25,5 +25,3 @@ class Twitter {
   }
 
 }
-
-export default new Twitter();

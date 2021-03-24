@@ -1,7 +1,7 @@
 const Twitter = require('./tools/twitter');
 const Currency = require('./tools/currency');
 
-class Bot {
+module.exports = class Bot {
 
   init() {
     this.verify()
@@ -52,5 +52,3 @@ class Bot {
   }
 
 }
-
-export default new Bot();
