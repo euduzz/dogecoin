@@ -1,5 +1,6 @@
-const Twitter = require('./tools/twitter');
-const Currency = require('./tools/currency');
+'use strict';
+var Twitter = require('./twitter');
+var Currency = require('./currency');
 
 module.exports = class Bot {
 

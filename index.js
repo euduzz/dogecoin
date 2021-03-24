@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 
-const Bot = require('./tools/bot');
+var Bot = require('./tools/bot');
 const schedule = require('node-schedule');
 
 app.get('/', (req, res) => {
