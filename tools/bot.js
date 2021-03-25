@@ -10,7 +10,6 @@ const init = () => {
 const verify = async() => {
   let doc = await Currency.get()
   let response = doc.data.data
-  console.log('response', response)
   calculate(response)
 }
 
