@@ -11,7 +11,8 @@ var instance = new Twit({
 })
 
 const post = (message) => {
-  instance.post('statuses/update', { status: message }, status())
+  // instance.post('statuses/update', { status: message }, status())
+  console.log(message)
 }
 
 const status = (error, response) => {
