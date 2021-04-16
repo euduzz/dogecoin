@@ -1,11 +1,12 @@
 'use strict';
 require('dotenv').config()
-const axios = require('axios');
+import axios from 'axios';
+class Currency {
+  constructor() {}
 
-const get = async() => {
-  return await axios.get(process.env.API_URL)
+  async get() {
+    return await axios.get(process.env.API_URL)
+  }
 }
 
-module.exports = {
-  get,
-}
+export default Currency

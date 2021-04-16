@@ -1,6 +1,7 @@
-const Bot = require('./tools/bot');
-const schedule = require('node-schedule');
+import schedule from 'node-schedule';
+import Bot from './tools/bot';
+const bot = new Bot()
 
-schedule.scheduleJob("*/30 7-19 * * *", (async function() {
-  Bot.init()
+schedule.scheduleJob("0 6-19 * * *", (async function() {
+  bot.init()
 }))

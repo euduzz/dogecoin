@@ -1,53 +1,43 @@
 'use strict';
-const Twitter = require('./twitter');
-const Currency = require('./currency');
+import Twitter from './twitter';
+const twitter = new Twitter();
 
+import Currency from './currency';
+const currency = new Currency();
 
-const init = () => {
-  verify()
-}
+class Bot {
+  constructor() {}
 
-const verify = async() => {
-  let doc = await Currency.get()
-  let response = doc.data.data
-  calculate(response)
-}
+  async init() {
+    const doc = await new currency.get()
+    let response = doc.data.data
 
-const calculate = (response) => {
-  var formatedPrice = response.market_data.price_usd.toFixed(5)
-  var formatPercent = parseFloat(response.market_data.percent_change_usd_last_1_hour).toFixed(2)+"%"
-
-  let settings = {
-    isHigher: null,
-    formatedPrice: formatedPrice,
-    formatPercent: formatPercent
+    this.calculate(response)
   }
 
-  if (response.market_data.price_usd > response.market_data.ohlcv_last_1_hour.high) {
-    settings.isHigher = true
-  } else {
-    settings.isHigher = false
+  async calculate(response) {
+    const dogePrice = response.market_data.price_usd.toFixed(2)
+    const dogeVariation = parseFloat(response.market_data.percent_change_usd_last_24_hours).toFixed(2)
+
+    this.publish(dogePrice, dogeVariation)
   }
 
-  publish(settings)
+  async publish(price, variation) {
+    let template = ''
+    const priceIcon = '💸'
+    const variationIcon = {
+      up: '🚀',
+      down: '🔻'
+    }
+
+    if (variation.startsWith('-')) {
+      template = `O #dogecoin caiu :( \n\n ${priceIcon} Preço atual: $${price} \n${variationIcon.down} Variação: ${variation}%`
+    } else {
+      template = `O #dogecoin subiu :) \n\n ${priceIcon} Preço atual: $${price} \n${variationIcon.up}  Variação: +${variation}%`
+    }
+
+    new twitter.post(template)
+  }
 }
 
-const publish = (settings) => {
-  let template = ''
-  if (settings.isHigher === null) {
-    template = `💸 Dogecoin se manteve: ${settings.formatedPrice} \n📈 Variação: ${settings.formatPercent}`
-  }
-  if (settings.isHigher) {
-    template = `💸 Dogecoin subiu: ${settings.formatedPrice} \n📈 Variação: ${settings.formatPercent}`
-  } else if (!settings.isHigher) {
-    template = `💸 Dogecoin caiu: ${settings.formatedPrice} \n📈 Variação: ${settings.formatPercent}`
-  }
-  Twitter.post(template)
-}
-
-module.exports = {
-  init,
-  verify,
-  calculate,
-  publish,
-};
+export default Bot;

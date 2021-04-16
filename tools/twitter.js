@@ -1,7 +1,7 @@
 'use strict';
 require('dotenv').config()
-var Twit = require('twit')
- 
+import Twit from 'twit';
+
 var instance = new Twit({
   consumer_key: process.env.CONSUMER_KEY,
   consumer_secret: process.env.CONSUMER_SECRET,
@@ -10,20 +10,16 @@ var instance = new Twit({
   timeout_ms: 60*1000,
 })
 
-const post = (message) => {
-  instance.post('statuses/update', { status: message }, status())
+class Twitter {
+  constructor() {}
+
+  post(message) {
+    instance.post('statuses/update', { status: message }, function(err) {
+      if (err) {
+        console.log('Fala ao realizar o tweet', err);
+      }
+    })
+  }
 }
 
-const status = (error, response) => {
-  if (error) {
-    console.log('Fala ao realizar o tweet', error);
-  }
-  else {
-    console.log('Tweet realizado com sucesso', response);
-  }
-}
-
-module.exports = {
-  post,
-  status
-}
+export default Twitter;
