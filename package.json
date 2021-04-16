@@ -5,15 +5,14 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon --exec babel-node src/index.js",
-    "clean": "rm -rf build && mkdir build",
-    "build": "yarn clean && yarn build-babel",
-    "build-babel": "babel -d ./build ./src -s"
+    "server": "nodemon src/index.js --exec babel-node",
+    "heroku-postbuild": "npm install",
+    "start": "babel-node src/index.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "node-schedule": "^2.0.0",
-    "nodemon": "^2.0.7",
     "twit": "^2.2.11"
   },
   "devDependencies": {
