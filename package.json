@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "babel src -d build",
+    "build": "babel src -d dist",
+    "start": "yarn run build && nodemon dist/index.js",
+    "serve": "yarn run build && node dist/index.js",
     "dev": "nodemon --exec babel-node index.js"
   },
   "dependencies": {
