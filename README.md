@@ -1,6 +1,8 @@
 # dogecoin
 *[Old]* Dogecoin track bot
 
+In memory of [DogecoinBipolar](https://twitter.com/dogecoinbipolar)
+
 ## Disclaimer
 
 Dogecoin in the end was a disappointment, but it was to be expected.
